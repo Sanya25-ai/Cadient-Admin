@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>e-Sign Forms Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .file-icon {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <div class="min-h-screen bg-white flex flex-col">
+      <!-- Page Header -->
+      <div class="bg-white border-b">
+        <div
+          class="max-w-7xl mx-auto px-6 flex items-center justify-between py-3"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 bg-orange-400/[0.08] rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-5 h-5 text-orange-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"
+                />
+              </svg>
+            </div>
+            <h1 class="text-xl font-bold text-gray-900">Manager Onboarding</h1>
+          </div>
+          <button
+            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium text-sm transition-colors"
+          >
+            Exit Onboarding Process
+          </button>
+        </div>
+      </div>
+
+      <!-- Content Area -->
+      <div class="flex-1 overflow-y-auto px-6 py-6">
+        <div class="w-full space-y-6">
+          <div class="bg-orange-400/[0.08] py-4 px-6 rounded-lg">
+            <h2 class="text-lg font-semibold text-orange-500 text-left">
+              e-Sign Forms
+            </h2>
+          </div>
+
+          <div class="bg-white px-6 pb-6 rounded-lg">
+            <!-- Success Message (hidden by default) -->
+            <div
+              id="successMessage"
+              class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 hidden"
+            >
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-green-600"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-green-800 font-medium">Success!</span>
+              </div>
+              <p class="text-green-800 text-sm mt-1" id="successText">
+                All the documents were signed successfully.
+              </p>
+            </div>
+
+            <p class="text-gray-700 mb-4">
+              The following forms require your electronic signature. The forms
+              contain information provided by you and the recruiter.
+            </p>
+
+            <p class="text-gray-700 mb-4">
+              All forms contain a certification stating you have read the form,
+              and that all information contained in the form is truthful and
+              accurate. You must read, verify, and sign each form.
+            </p>
+
+            <p class="text-gray-700 mb-4">
+              You sign each form by clicking the "Sign" button below the form.
+              Once you sign each form, you cannot correct any information that
+              you have provided in the form.
+            </p>
+
+            <p class="text-gray-700 mb-6">
+              By signing each form, you acknowledge that you have read the form,
+              understand all statements associated with it, and that all
+              information contained in the form is truthful and accurate.
+            </p>
+
+            <p class="text-gray-700 mb-6">
+              If you have questions about the forms, please contact Trident
+              Seafoods: hrops@tridentseafoods.com or (206) 789-8545.
+            </p>
+
+            <!-- Info Boxes -->
+            <div class="space-y-4 mb-6">
+              <div class="bg-gray-100 border border-gray-300 rounded p-3">
+                <p class="text-sm text-gray-700">
+                  Throughout these web pages on electronic signature you may
+                  click on view links that are underlined and an Adobe PDF file
+                  version of a document or form will open for your review. You
+                  may also print these documents.
+                </p>
+              </div>
+
+              <div class="bg-gray-100 border border-gray-300 rounded p-3">
+                <p class="text-sm text-gray-700">
+                  <strong>PLEASE NOTE:</strong> If you view the document before
+                  signing here, Employee signature is not visible. Employee has
+                  signed during Employee Onboarding. However, you need to sign
+                  here to complete the process. After you sign here, Employee's
+                  and your signature is visible.
+                </p>
+              </div>
+            </div>
+
+            <!-- Documents List -->
+            <div class="space-y-4 mb-6" id="documentsList">
+              <!-- Document 1 -->
+              <div
+                class="border border-gray-300 rounded-lg p-4"
+                data-doc-id="1"
+              >
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <svg
+                      class="file-icon text-gray-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <div>
+                      <span class="font-medium">Vessel Personnel Handbook</span>
+                      <span class="text-gray-500 text-sm ml-2 view-required"
+                        >(view required before signing)</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button
+                      class="view-btn border border-gray-300 text-orange-600 px-3 py-1 rounded text-sm hover:bg-gray-50"
+                    >
+                      View
+                    </button>
+                    <button
+                      class="sign-btn border border-orange-600 text-orange-600 px-3 py-1 rounded text-sm hover:bg-orange-50 hidden"
+                    >
+                      Sign ✏️
+                    </button>
+                    <span
+                      class="signed-text text-sm text-gray-600 hidden"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Document 2 -->
+              <div
+                class="border border-gray-300 rounded-lg p-4"
+                data-doc-id="2"
+              >
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <svg
+                      class="file-icon text-gray-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <div>
+                      <span class="font-medium"
+                        >Case Rate Employment Agreement (Catcher
+                        Processors)</span
+                      >
+                      <span class="text-gray-500 text-sm ml-2 view-required"
+                        >(view required before signing)</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button
+                      class="view-btn border border-gray-300 text-orange-600 px-3 py-1 rounded text-sm hover:bg-gray-50"
+                    >
+                      View
+                    </button>
+                    <button
+                      class="sign-btn border border-orange-600 text-orange-600 px-3 py-1 rounded text-sm hover:bg-orange-50 hidden"
+                    >
+                      Sign ✏️
+                    </button>
+                    <span
+                      class="signed-text text-sm text-gray-600 hidden"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Document 3 -->
+              <div
+                class="border border-gray-300 rounded-lg p-4"
+                data-doc-id="3"
+              >
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <svg
+                      class="file-icon text-gray-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                    <div>
+                      <span class="font-medium"
+                        >Standard Offer of Employment</span
+                      >
+                      <span class="text-gray-500 text-sm ml-2"
+                        >*no signature required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button
+                      class="view-btn border border-gray-300 text-orange-600 px-3 py-1 rounded text-sm hover:bg-gray-50"
+                    >
+                      View
+                    </button>
+                    <button
+                      class="sign-btn border border-orange-600 text-orange-600 px-3 py-1 rounded text-sm hover:bg-orange-50"
+                    >
+                      Sign ✏️
+                    </button>
+                    <span
+                      class="signed-text text-sm text-gray-600 hidden"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-2 mb-6">
+              <button
+                id="viewAllBtn"
+                class="bg-orange-100 text-orange-700 border border-orange-300 px-4 py-2 rounded hover:bg-orange-200"
+              >
+                👁️ View All
+              </button>
+              <button
+                id="signAllBtn"
+                class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
+              >
+                ✏️ Sign All
+              </button>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium">Next:</span>
+              <button
+                id="completeBtn"
+                class="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+              >
+                Complete Onboarding
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Document state
+      const documents = [
+        {
+          id: 1,
+          name: "Vessel Personnel Handbook",
+          signed: false,
+          viewed: false,
+          viewRequired: true,
+        },
+        {
+          id: 2,
+          name: "Case Rate Employment Agreement (Catcher Processors)",
+          signed: false,
+          viewed: false,
+          viewRequired: true,
+        },
+        {
+          id: 3,
+          name: "Standard Offer of Employment",
+          signed: false,
+          viewed: false,
+          viewRequired: false,
+        },
+      ];
+
+      let viewedAll = false;
+
+      // Helper function to format current date/time
+      function getCurrentTimestamp() {
+        const now = new Date();
+        const month = (now.getMonth() + 1).toString().padStart(2, "0");
+        const day = now.getDate().toString().padStart(2, "0");
+        const year = now.getFullYear().toString().slice(-2);
+        const time = now.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        });
+        return `${month}/${day}/${year} (${time})`;
+      }
+
+      // Handle individual view button clicks
+      document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("view-btn")) {
+          const docCard = e.target.closest("[data-doc-id]");
+          const docId = parseInt(docCard.dataset.docId);
+          const doc = documents.find((d) => d.id === docId);
+
+          if (doc) {
+            doc.viewed = true;
+            updateDocumentCard(docCard, doc);
+          }
+        }
+      });
+
+      // Handle individual sign button clicks
+      document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("sign-btn")) {
+          const docCard = e.target.closest("[data-doc-id]");
+          const docId = parseInt(docCard.dataset.docId);
+          const doc = documents.find((d) => d.id === docId);
+
+          if (doc) {
+            doc.signed = true;
+            doc.signedAt = getCurrentTimestamp();
+            updateDocumentCard(docCard, doc);
+            updateCompleteButton();
+            showSuccessMessage();
+          }
+        }
+      });
+
+      // Handle View All button
+      document
+        .getElementById("viewAllBtn")
+        .addEventListener("click", function () {
+          viewedAll = true;
+          documents.forEach((doc) => {
+            doc.viewed = true;
+            const docCard = document.querySelector(`[data-doc-id="${doc.id}"]`);
+            updateDocumentCard(docCard, doc);
+          });
+        });
+
+      // Handle Sign All button
+      document
+        .getElementById("signAllBtn")
+        .addEventListener("click", function () {
+          const timestamp = getCurrentTimestamp();
+          documents.forEach((doc) => {
+            if (!doc.signed) {
+              doc.signed = true;
+              doc.signedAt = timestamp;
+              const docCard = document.querySelector(
+                `[data-doc-id="${doc.id}"]`
+              );
+              updateDocumentCard(docCard, doc);
+            }
+          });
+          updateCompleteButton();
+          showSuccessMessage();
+        });
+
+      // Update document card display
+      function updateDocumentCard(docCard, doc) {
+        const viewRequiredSpan = docCard.querySelector(".view-required");
+        const signBtn = docCard.querySelector(".sign-btn");
+        const signedText = docCard.querySelector(".signed-text");
+
+        // Hide view required text if viewed
+        if (doc.viewed && viewRequiredSpan) {
+          viewRequiredSpan.classList.add("hidden");
+        }
+
+        // Show sign button if conditions are met
+        if (!doc.signed && (doc.viewed || viewedAll || !doc.viewRequired)) {
+          signBtn.classList.remove("hidden");
+        }
+
+        // Show signed text if signed
+        if (doc.signed && doc.signedAt) {
+          signBtn.classList.add("hidden");
+          signedText.textContent = `Signed on ${doc.signedAt}`;
+          signedText.classList.remove("hidden");
+        }
+      }
+
+      // Update complete button state
+      function updateCompleteButton() {
+        const completeBtn = document.getElementById("completeBtn");
+        const allSigned = documents.every((doc) => doc.signed);
+        completeBtn.disabled = !allSigned;
+      }
+
+      // Show success message
+      function showSuccessMessage() {
+        const successMessage = document.getElementById("successMessage");
+        const successText = document.getElementById("successText");
+        const signedCount = documents.filter((doc) => doc.signed).length;
+
+        if (signedCount === documents.length) {
+          successText.textContent =
+            "All the documents were signed successfully.";
+        } else {
+          successText.textContent = `${signedCount} document(s) have been signed successfully.`;
+        }
+
+        successMessage.classList.remove("hidden");
+
+        // Hide after 3 seconds
+        setTimeout(() => {
+          successMessage.classList.add("hidden");
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
